@@ -40,6 +40,6 @@ public class CommunicationService {
 		return resultData.getUtt();
 	}
 	protected enum enumWords{
-		ただいま, 暇だな, 寒っ, あつい, いただきます, ごちそうさま, 行ってきます, 何か話して
+		ただいま, 暇, 寒, あつ, いただきます, ごちそうさま, 行ってきます, 話して
 	};
 }
