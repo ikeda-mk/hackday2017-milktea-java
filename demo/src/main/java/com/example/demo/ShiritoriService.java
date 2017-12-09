@@ -10,9 +10,9 @@ public class ShiritoriService {
 	// 外部サービスの URL
 	private final String url = "https://api.repl-ai.jp/v1/dialogue";
 
-	public String shiritori () {
+	public String shiritori (String word) {
 		//ここにしりとり処理を書いていく
-		String word = "あいうえお";
+		word = "あいうえお";
 		// プロキシの設定
 		// プロキシを使用しない場合はコメントにしてください
 		//ProxyInfo.initializeProxy("proxyhost.co.jp", 80);
