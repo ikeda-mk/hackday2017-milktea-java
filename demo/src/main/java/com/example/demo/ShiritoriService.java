@@ -15,7 +15,7 @@ public class ShiritoriService {
 
 	public String shiritori (String word) {
 		//ここにしりとり処理を書いていく
-		// APIKEY の設定
+		// APIKEYの設定
 		AuthApiKey.initializeAuth(API_KEY);
 
 		System.out.println(word);
@@ -33,7 +33,7 @@ public class ShiritoriService {
 		Dialogue dialogue = new Dialogue();
 		DialogueResultData resultData = new DialogueResultData();
 		try {
-	 		resultData = dialogue.request(param, "ACCESS_TOKEN");
+	 		resultData = dialogue.request(param);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

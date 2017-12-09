@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,15 +26,16 @@ public class PonchanResource {
 	public String communication(@RequestParam String word) {
 		//ユーザーが発した言葉へのレスポンス処理
 		List<String> shiritoris = Arrays.asList("しりとり");
-		boolean responseTrue = Arrays.stream(words.values()).anyMatch(enumWord ->enumWord.toString().contains(word));
+		boolean responseTrue = Arrays.stream(enumWords.values()).anyMatch(enumWord ->enumWord.toString().contains(word));
 		List<String> shiritoriTrue = shiritoris.stream().filter(shiritori ->word.contains(shiritori)).collect(Collectors.toList());
 
-		if (responseTrue) {
-			return communicationService.communication(word);
-		} else if (shiritoriTrue.size() != 0) {
+		if (shiritoriTrue.size() != 0) {
 			return shiritoriService.shiritori(word);
+		} else if (responseTrue) {
+			return communicationService.communication(word);
 		}
 		return "hello World";
+//		return shiritoriService.shiritori(word);
 	}
 
 	@RequestMapping("/talk")
