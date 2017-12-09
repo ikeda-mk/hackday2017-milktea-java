@@ -28,12 +28,13 @@ public class PonchanResource {
 		List<String> responses = Arrays.asList("ただいま", "暇だな", "寒っ", "あつ", "いただきます", "ごちそう様", "行ってきます", "何か話して");
 //		List<String> responses = new ArrayList<>();
 		List<String> shiritoris = Arrays.asList("しりとり");
-		List<String> responseTrue = responses.stream().filter(response ->word.contains(response)).collect(Collectors.toList());
+//		boolean responseTrue = Arrays.stream(words.values()).anyMatch(enumWord ->enumWord.toString().contains(word));
+		boolean responseTrue = true;
 		List<String> shiritoriTrue = shiritoris.stream().filter(shiritori ->word.contains(shiritori)).collect(Collectors.toList());
 
 		if (shiritoriTrue.size() != 0) {
 			return shiritoriService.shiritori(word);
-		} else if (responseTrue.size() != 0) {
+		} else if (responseTrue) {
 			return communicationService.communication(word);
 		}
 		return "hello World";
