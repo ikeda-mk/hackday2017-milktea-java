@@ -22,7 +22,9 @@ public class TweetService {
 			, "%s"
 			, "「%s」わたしもそう思うわん" };
 
-	private static final Twitter twitter = TwitterFactory.getSingleton();
+	@Autowired
+	Twitter twitter;
+	//private static final Twitter twitter = TwitterFactory.getSingleton();
 	//ここにツイッター処理を書いていく
 		public void tweet() {
 			if(textHolder.getLatestText() == null){
