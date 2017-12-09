@@ -66,9 +66,9 @@ public class PonchanResource {
 	}
 
 	@RequestMapping("/talk")
-	public void talk() {
+	public String talk() {
 		//独り言をつぶやく処理
-		monologueService.monologue();
+		return monologueService.monologue();
 	}
 
 	@RequestMapping("/tweet")

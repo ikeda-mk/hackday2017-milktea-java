@@ -16,7 +16,6 @@ import twitter4j.Trend;
 import twitter4j.Trends;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
 import twitter4j.User;
 
 @Service
@@ -26,13 +25,16 @@ public class MonologueService {
 	@Autowired
 	Twitter twitter;
 
-	public void monologue () {
+	public String monologue () {
+		String tweetStr = "";
 		try {
-			tweet(searchTweet(getTrendInJapan()));
+			tweetStr = tweet(searchTweet(getTrendInJapan()));
 //			searchTweet(getTrendInJapan());
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
+		
+		return tweetStr;
 	}
 
     private String searchTweet(String searchStr) throws TwitterException {
@@ -71,8 +73,9 @@ public class MonologueService {
 		return filterdTrendList.get(new Random().nextInt(filterdTrendList.size())).getName();
     }
 
-    private void tweet(String tweetStr) throws TwitterException {
+    private String tweet(String tweetStr) throws TwitterException {
 		twitter.updateStatus(tweetStr);
+		return tweetStr;
     }
 
     private void logUserInfo(Twitter twitter) throws TwitterException {
