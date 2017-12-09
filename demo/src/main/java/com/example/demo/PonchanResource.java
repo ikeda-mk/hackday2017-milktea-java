@@ -26,8 +26,7 @@ public class PonchanResource {
 	@RequestMapping("/communication")
 	public String communication(@RequestParam String word) {
 
-	    //会話の履歴を保存
-        textHolder.addText(word);
+
 
 		//ユーザーが発した言葉へのレスポンス処理
 		int languageNo = 0;
@@ -52,8 +51,12 @@ public class PonchanResource {
 			}
 			return shiritoriResponseDto.getResText();
 		} else if (languageNo < enumWords.values().length) {
+			//会話の履歴を保存
+			textHolder.addText(word);
 			return communicationService.communication(languageNo);
 		} else {
+			//会話の履歴を保存
+			textHolder.addText(word);
 			return communicationService.communicationApi(word);
 		}
 	}
