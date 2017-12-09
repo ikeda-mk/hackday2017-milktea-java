@@ -27,11 +27,10 @@ public class PonchanResource {
 	@RequestMapping("/communication")
 	public String communication(@RequestParam String word) {
 		//ユーザーが発した言葉へのレスポンス処理
-		List<String> shiritoris = Arrays.asList("しりとり");
 		boolean responseTrue = Arrays.stream(enumWords.values()).anyMatch(enumWord ->enumWord.toString().contains(word));
-		List<String> shiritoriTrue = shiritoris.stream().filter(shiritori ->word.contains(shiritori)).collect(Collectors.toList());
+		boolean shiritoriTrue = word.contains("しりとり");
 
-		if (shiritoriTrue.size() != 0) {
+		if (shiritoriTrue) {
 			return shiritoriService.shiritori(word);
 		} else if (responseTrue) {
 			return communicationService.communication(word);
