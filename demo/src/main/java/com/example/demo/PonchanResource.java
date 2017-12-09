@@ -1,10 +1,5 @@
 package com.example.demo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,6 +61,6 @@ public class PonchanResource {
 	@RequestMapping("/tweet")
 	public void twitter(@RequestParam String word) {
 		//ツイートを行う処理
-		tweetService.test(word);
+		tweetService.tweet(word);
 		}
 }
