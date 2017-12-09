@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.CommunicationService.enumWords;
+
 @RestController
 public class PonchanResource {
 
@@ -33,9 +35,9 @@ public class PonchanResource {
 			return shiritoriService.shiritori(word);
 		} else if (responseTrue) {
 			return communicationService.communication(word);
+		} else {
+			return communicationService.communicationApi(word);
 		}
-		return "hello World";
-//		return shiritoriService.shiritori(word);
 	}
 
 	@RequestMapping("/talk")
