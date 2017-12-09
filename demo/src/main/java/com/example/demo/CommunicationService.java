@@ -15,7 +15,7 @@ public class CommunicationService {
 	private static final String API_KEY = "73556748702f69754655714146455a4b715542442f793369347a563964455a57756a4c6b777146354b5337";
 	public String communication (int languageNo) {
 			List<String> responseLanguage = Arrays.asList("おかえり～", "さびしいの？ぼくがいるからだじょうぶっしょ～", "あたためてあげようか？",
-					"はい、ゆっくり食べなよ", "ごちそうさま", "いってらっしゃい", "おう、というかいぬだけどね、おれ");
+					"ふく、ぬぎなよ", "はい、ゆっくり食べなよ", "よし、たくさんたべたね", "いってらっしゃい", "おう、というかいぬだけどね、おれ");
 			return responseLanguage.get(languageNo);
 		}
 
