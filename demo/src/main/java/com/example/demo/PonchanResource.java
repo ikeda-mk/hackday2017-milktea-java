@@ -44,11 +44,14 @@ public class PonchanResource {
 //		boolean continueJudge = false;
 		if (shiritoriTrue || !"".equals(shiritoriResponseDto.getTalkId())) {
 			String srtrRes = shiritoriService.shiritori(word);
+			String[] resArray = srtrRes.split(",");
 			// 会話IDが入っている場合はしりとり続行
 			if (srtrRes.contains("talkId")) {
-				String[] resArray = srtrRes.split(",");
 				shiritoriResponseDto.setResText(resArray[0]);
 				shiritoriResponseDto.setTalkId(resArray[1].replace("talkId", ""));
+			} else {
+				shiritoriResponseDto.setResText(resArray[0]);
+				shiritoriResponseDto.setTalkId("");
 			}
 			return shiritoriResponseDto.getResText();
 		} else if (languageNo < enumWords.values().length) {
