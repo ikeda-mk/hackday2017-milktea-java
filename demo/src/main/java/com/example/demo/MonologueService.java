@@ -74,7 +74,7 @@ public class MonologueService {
 		return filterdTrendList.get(new Random().nextInt(filterdTrendList.size())).getName();
     }
 
-    private String tweet(String tweetStr) throws TwitterException {
+    public String tweet(String tweetStr) throws TwitterException {
 		twitter.updateStatus(tweetStr);
 		return tweetStr;
     }
