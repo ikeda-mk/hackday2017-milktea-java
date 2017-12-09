@@ -22,9 +22,9 @@ import twitter4j.User;
 @Service
 public class MonologueService {
 
-//	private static final Twitter twitter = TwitterFactory.getSingleton();
-	@Autowired
-	Twitter twitter;
+	private static final Twitter twitter = TwitterFactory.getSingleton();
+//	@Autowired
+//	Twitter twitter;
 
 	public void monologue () {
 		try {
@@ -71,7 +71,7 @@ public class MonologueService {
 		return filterdTrendList.get(new Random().nextInt(filterdTrendList.size())).getName();
     }
 
-    private void tweet(String tweetStr) throws TwitterException {
+    public void tweet(String tweetStr) throws TwitterException {
 		twitter.updateStatus(tweetStr);
     }
 

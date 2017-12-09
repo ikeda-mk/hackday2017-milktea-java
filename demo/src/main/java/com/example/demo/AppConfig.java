@@ -17,9 +17,9 @@ public class AppConfig {
 //		return new ShiritoriResponseDto();
 //	}
 
-	@Bean
-	Twitter twitter(){
-		return TwitterFactory.getSingleton();
-	}
+//	@Bean
+//	Twitter twitter(){
+//		return TwitterFactory.getSingleton();
+//	}
 
 }

@@ -11,7 +11,8 @@ import java.util.Random;
 @Service
 public class TweetService {
 
-
+	@Autowired
+	MonologueService monologueService;
 	@Autowired
 	private TalkingTextHolder textHolder;
 
@@ -22,7 +23,7 @@ public class TweetService {
 			, "%s"
 			, "「%s」わたしもそう思うわん" };
 
-	@Autowired
+	//@Autowired
 //	Twitter twitter;
 	//private static final Twitter twitter = TwitterFactory.getSingleton();
 	//ここにツイッター処理を書いていく
@@ -30,11 +31,11 @@ public class TweetService {
 			if(textHolder.getLatestText() == null){
 				return;
 			}
-//			try{
-//				twitter.updateStatus(String.format(templateArray[random.nextInt(3)],textHolder.getLatestText()));
-//			}catch(TwitterException e){
-//				e.printStackTrace();
-//			}
+			try{
+				monologueService.tweet(String.format(templateArray[random.nextInt(3)],textHolder.getLatestText()));
+			}catch(TwitterException e){
+				e.printStackTrace();
+			}
 
 		}
 }
