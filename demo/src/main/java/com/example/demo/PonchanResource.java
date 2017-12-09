@@ -31,7 +31,7 @@ public class PonchanResource {
 
 		if (responseTrue.size() == 0) {
 			return communicationService.communication(word);
-		} else if (shiritoriTrue.size() == 0) {
+		} else if (shiritoriTrue.size() != 0) {
 			return shiritoriService.shiritori(word);
 		}
 		return "hello World";
