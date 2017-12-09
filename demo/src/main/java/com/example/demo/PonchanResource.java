@@ -24,12 +24,12 @@ public class PonchanResource {
 	@RequestMapping("/communication")
 	public String communication(@RequestParam String word) {
 		//ユーザーが発した言葉へのレスポンス処理
-		List<String> responses = Arrays.asList("ただいま", "暇だな");
+		List<String> responses = Arrays.asList("ただいま", "暇だな", "寒っ", "あつ", "いただきます", "ごちそう様", "行ってきます", "何か話して");
 		List<String> shiritoris = Arrays.asList("しりとり");
 		List<String> responseTrue = responses.stream().filter(response ->word.contains(response)).collect(Collectors.toList());
 		List<String> shiritoriTrue = shiritoris.stream().filter(shiritori ->word.contains(shiritori)).collect(Collectors.toList());
 
-		if (responseTrue.size() == 0) {
+		if (responseTrue.size() != 0) {
 			return communicationService.communication(word);
 		} else if (shiritoriTrue.size() != 0) {
 			return shiritoriService.shiritori(word);
