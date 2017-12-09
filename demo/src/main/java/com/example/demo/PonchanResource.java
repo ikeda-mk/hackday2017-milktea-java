@@ -33,9 +33,9 @@ public class PonchanResource {
 			return shiritoriService.shiritori(word);
 		} else if (responseTrue) {
 			return communicationService.communication(word);
+		} else {
+			return communicationService.communicationApi(word);
 		}
-		return "hello World";
-//		return shiritoriService.shiritori(word);
 	}
 
 	@RequestMapping("/talk")
