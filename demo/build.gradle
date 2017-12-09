@@ -26,4 +26,6 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile files('lib/docomo-common-java-sdk-1.0.6.jar')
+	compile files('lib/docomo-dialogue-java-sdk-2.0.1.jar')
 }

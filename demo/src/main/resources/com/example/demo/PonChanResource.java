@@ -40,7 +40,7 @@ public class PonChanResource {
 	@RequestMapping("/talk")
 	public String talk() {
 		//独り言をつぶやく処理
-		return monologueService.monologue();
+		return shiritoriService.shiritori();
 	}
 
 	@RequestMapping("/tweet")
