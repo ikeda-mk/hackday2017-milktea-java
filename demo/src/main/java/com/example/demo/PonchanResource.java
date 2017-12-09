@@ -24,15 +24,25 @@ public class PonchanResource {
 	@Autowired
 	private TweetService tweetService;
 
+	// しりとり続行判断フラグ
+//	private serialized
+
 	@RequestMapping("/communication")
 	public String communication(@RequestParam String word) {
 		//ユーザーが発した言葉へのレスポンス処理
-		List<String> shiritoris = Arrays.asList("しりとり");
 		boolean responseTrue = Arrays.stream(enumWords.values()).anyMatch(enumWord ->enumWord.toString().contains(word));
-		List<String> shiritoriTrue = shiritoris.stream().filter(shiritori ->word.contains(shiritori)).collect(Collectors.toList());
+		boolean shiritoriTrue = word.contains("しりとり");
 
-		if (shiritoriTrue.size() != 0) {
-			return shiritoriService.shiritori(word);
+		// しりとりを続けるかを判定するフラグ
+		boolean continueJudge = false;
+		if (shiritoriTrue || continueJudge) {
+			String srtrRes = shiritoriService.shiritori(word);
+			// 会話IDが入っている場合はしりとり続行
+			continueJudge = srtrRes.contains("talkId");
+			if (continueJudge) {
+				srtrRes.replace("talkId", "");
+			}
+			return srtrRes;
 		} else if (responseTrue) {
 			return communicationService.communication(word);
 		} else {
