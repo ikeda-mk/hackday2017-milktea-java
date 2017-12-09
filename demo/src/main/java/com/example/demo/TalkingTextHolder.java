@@ -16,6 +16,9 @@ public class TalkingTextHolder {
         if(textList.size() == 0){
             return null;
         }
+        for(String text : textList){
+            System.out.println(text);
+        }
        return  textList.get(textList.size()-1);
     }
 }
