@@ -11,6 +11,8 @@ import java.util.List;
 
 @Service
 public class CommunicationService {
+	// APIキー
+	private static final String API_KEY = "73556748702f69754655714146455a4b715542442f793369347a563964455a57756a4c6b777146354b5337";
 	public String communication (String word) {
 		switch (word) {
 			case "ただいま":
