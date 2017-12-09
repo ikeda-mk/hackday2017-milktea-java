@@ -30,7 +30,14 @@ public class PonchanResource {
 	@RequestMapping("/communication")
 	public String communication(@RequestParam String word) {
 		//ユーザーが発した言葉へのレスポンス処理
-		boolean responseTrue = Arrays.stream(enumWords.values()).anyMatch(enumWord ->enumWord.toString().contains(word));
+		int languageNo = 0;
+		for(enumWords enumWord : enumWords.values()) {
+			if (word.contains(enumWord.toString())) {
+				break;
+			} else {
+				languageNo++;
+			}
+		}
 		boolean shiritoriTrue = word.contains("しりとり");
 
 		// しりとりを続けるかを判定するフラグ
@@ -43,8 +50,8 @@ public class PonchanResource {
 				srtrRes.replace("talkId", "");
 			}
 			return srtrRes;
-		} else if (responseTrue) {
-			return communicationService.communication(word);
+		} else if (languageNo < enumWords.values().length) {
+			return communicationService.communication(languageNo);
 		} else {
 			return communicationService.communicationApi(word);
 		}

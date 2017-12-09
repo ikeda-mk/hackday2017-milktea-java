@@ -13,27 +13,11 @@ import java.util.List;
 public class CommunicationService {
 	// APIキー
 	private static final String API_KEY = "73556748702f69754655714146455a4b715542442f793369347a563964455a57756a4c6b777146354b5337";
-	public String communication (String word) {
-		switch (word) {
-			case "ただいま":
-			return "おかえり～";
-			case "暇だな":
-				return "さびしいの？ぼくがいあるからだいじょうぶっしょ～";
-			case "寒っ":
-				return "あたためてあげようか？";
-			case "あつ":
-				return "ふく、ぬぎなよ";
-			case "いただきます":
-				return "はい、ゆっくり食べなよ";
-			case "ごちそうさま":
-				return "おう。";
-			case "いってきます":
-				return "きをつけていってらっしゃ～い";
-			case "なにかはなして":
-				return "おう、というかいぬだけどね、おれ。";
+	public String communication (int languageNo) {
+			List<String> responseLanguage = Arrays.asList("おかえり～", "さびしいの？ぼくがいるからだじょうぶっしょ～", "あたためてあげようか？",
+					"はい、ゆっくり食べなよ", "ごちそうさま", "いってらっしゃい", "おう、というかいぬだけどね、おれ");
+			return responseLanguage.get(languageNo);
 		}
-		return "あ？";
-	}
 
 	public String communicationApi (String word) {
 		// APIKEYの設定
@@ -56,6 +40,6 @@ public class CommunicationService {
 		return resultData.getUtt();
 	}
 	protected enum enumWords{
-		ただいま, 暇だな, 寒っ, あつ, いただきます, ごちそう様, 行ってきます, 何か話して
+		ただいま, 暇だな, 寒っ, あつい, いただきます, ごちそうさま, 行ってきます, 何か話して
 	};
 }
