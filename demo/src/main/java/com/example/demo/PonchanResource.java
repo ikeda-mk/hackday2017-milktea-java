@@ -18,12 +18,18 @@ public class PonchanResource {
 	private MonologueService monologueService;
 	@Autowired
 	private TweetService tweetService;
+	@Autowired
+    private TalkingTextHolder textHolder;
 
 	// しりとり続行判断フラグ
 //	private serialized
 
 	@RequestMapping("/communication")
 	public String communication(@RequestParam String word) {
+
+	    //会話の履歴を保存
+        textHolder.addText(word);
+
 		//ユーザーが発した言葉へのレスポンス処理
 		int languageNo = 0;
 		for(enumWords enumWord : enumWords.values()) {
@@ -59,8 +65,8 @@ public class PonchanResource {
 	}
 
 	@RequestMapping("/tweet")
-	public void twitter(@RequestParam String word) {
+	public void twitter() {
 		//ツイートを行う処理
-		tweetService.tweet(word);
+		tweetService.tweet();
 		}
 }
