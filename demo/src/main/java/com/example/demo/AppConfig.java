@@ -7,15 +7,15 @@ import twitter4j.TwitterFactory;
 
 @Configuration
 public class AppConfig {
-	@Bean
-	TalkingTextHolder  talkingTextHolder() {
-		return new TalkingTextHolder();
-	}
+//	@Bean
+//	TalkingTextHolder  talkingTextHolder() {
+//		return new TalkingTextHolder();
+//	}
 
-	@Bean
-	ShiritoriResponseDto responceDto() {
-		return new ShiritoriResponseDto();
-	}
+//	@Bean
+//	ShiritoriResponseDto responceDto() {
+//		return new ShiritoriResponseDto();
+//	}
 
 	@Bean
 	Twitter twitter(){

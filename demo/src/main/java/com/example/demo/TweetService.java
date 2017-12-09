@@ -23,18 +23,18 @@ public class TweetService {
 			, "「%s」わたしもそう思うわん" };
 
 	@Autowired
-	Twitter twitter;
+//	Twitter twitter;
 	//private static final Twitter twitter = TwitterFactory.getSingleton();
 	//ここにツイッター処理を書いていく
 		public void tweet() {
 			if(textHolder.getLatestText() == null){
 				return;
 			}
-			try{
-				twitter.updateStatus(String.format(templateArray[random.nextInt(3)],textHolder.getLatestText()));
-			}catch(TwitterException e){
-				e.printStackTrace();
-			}
+//			try{
+//				twitter.updateStatus(String.format(templateArray[random.nextInt(3)],textHolder.getLatestText()));
+//			}catch(TwitterException e){
+//				e.printStackTrace();
+//			}
 
 		}
 }

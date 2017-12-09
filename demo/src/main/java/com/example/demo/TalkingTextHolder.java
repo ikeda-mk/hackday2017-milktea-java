@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TalkingTextHolder {
 
     private List<String> textList = new CopyOnWriteArrayList<>();
