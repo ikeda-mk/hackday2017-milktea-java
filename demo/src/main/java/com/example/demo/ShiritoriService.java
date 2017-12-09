@@ -13,7 +13,7 @@ public class ShiritoriService {
 	// APIキー
 	private static final String API_KEY = "73556748702f69754655714146455a4b715542442f793369347a563964455a57756a4c6b777146354b5337";
 
-	public String shiritori (String word) {
+	public String shiritori (String word, String context) {
 		//ここにしりとり処理を書いていく
 		// APIKEYの設定
 		AuthApiKey.initializeAuth(API_KEY);
@@ -29,6 +29,7 @@ public class ShiritoriService {
 		// ユーザの発話
 		param.setUtt(word);
 		param.setMode("srtr");
+		param.setContext(context);
 
 		// 雑談対話クラスの生成して、リクエストを実行する
 		Dialogue dialogue = new Dialogue();
@@ -39,7 +40,16 @@ public class ShiritoriService {
 			e.printStackTrace();
 		}
 
-		StringBuilder res = new StringBuilder().append(resultData.getYomi()).append(",").append("talkId:").append(resultData.getContext());
+		//ユーザの入力文字で末尾に「ん」がついてたらしりとり終了
+		// 会話IDを空にする
+		String resTalkId = resultData.getContext();
+		System.out.println("word last:" + word.charAt(word.length() - 1));
+		String wordEnd = String.valueOf(word.charAt(word.length() - 1));
+		if ("ん".equals(wordEnd)) {
+			System.out.println("shiritori end!!!");
+			resTalkId = "";
+		}
+		StringBuilder res = new StringBuilder().append(resultData.getYomi()).append(",").append(resTalkId);
 
 		return res.toString();
 	}

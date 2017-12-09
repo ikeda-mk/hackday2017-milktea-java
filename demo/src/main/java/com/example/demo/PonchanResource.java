@@ -26,7 +26,10 @@ public class PonchanResource {
 	@RequestMapping("/communication")
 	public String communication(@RequestParam String word) {
 
-
+		if ("".equals(word)) {
+			System.out.println("word empty.");
+			return "";
+		}
 
 		//ユーザーが発した言葉へのレスポンス処理
 		int languageNo = 0;
@@ -39,19 +42,17 @@ public class PonchanResource {
 		}
 		boolean shiritoriTrue = word.contains("しりとり");
 
-		// しりとりを続けるかを判定するフラグ
-//		boolean continueJudge = false;
+		System.out.println("word:" + word + ", talkId:" + shiritoriResponseDto.getTalkId());
 		if (shiritoriTrue || !"".equals(shiritoriResponseDto.getTalkId())) {
-			String srtrRes = shiritoriService.shiritori(word);
+			String srtrRes = shiritoriService.shiritori(word, shiritoriResponseDto.getTalkId());
 			String[] resArray = srtrRes.split(",");
 			// 会話IDが入っている場合はしりとり続行
-			if (srtrRes.contains("talkId")) {
 				shiritoriResponseDto.setResText(resArray[0]);
-				shiritoriResponseDto.setTalkId(resArray[1].replace("talkId", ""));
-			} else {
-				shiritoriResponseDto.setResText(resArray[0]);
-				shiritoriResponseDto.setTalkId("");
-			}
+				if (resArray.length == 2) {
+					shiritoriResponseDto.setTalkId(resArray[1]);
+				} else {
+					shiritoriResponseDto.setTalkId("");
+				}
 			return shiritoriResponseDto.getResText();
 		} else if (languageNo < enumWords.values().length) {
 			//会話の履歴を保存
