@@ -28,6 +28,7 @@ public class ShiritoriService {
 		DialogueRequestParam param = new DialogueRequestParam();
 		// ユーザの発話
 		param.setUtt(word);
+		param.setMode("srtr");
 
 		// 雑談対話クラスの生成して、リクエストを実行する
 		Dialogue dialogue = new Dialogue();
@@ -38,7 +39,7 @@ public class ShiritoriService {
 			e.printStackTrace();
 		}
 
-		StringBuilder res = new StringBuilder().append("{").append(resultData.getYomi()).append(",").append("talkId:").append(resultData.getContext());
+		StringBuilder res = new StringBuilder().append(resultData.getYomi()).append(",").append("talkId:").append(resultData.getContext());
 
 		return res.toString();
 	}

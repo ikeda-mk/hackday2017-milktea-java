@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import twitter4j.Query;
@@ -21,7 +22,9 @@ import twitter4j.User;
 @Service
 public class MonologueService {
 
-	private static final Twitter twitter = TwitterFactory.getSingleton();
+//	private static final Twitter twitter = TwitterFactory.getSingleton();
+	@Autowired
+	Twitter twitter;
 
 	public void monologue () {
 		try {

@@ -18,12 +18,16 @@ public class PonchanResource {
 	private MonologueService monologueService;
 	@Autowired
 	private TweetService tweetService;
-
-	// しりとり続行判断フラグ
-//	private serialized
+	@Autowired
+	private ShiritoriResponseDto shiritoriResponseDto;
+	@Autowired
+    private TalkingTextHolder textHolder;
 
 	@RequestMapping("/communication")
 	public String communication(@RequestParam String word) {
+
+
+
 		//ユーザーが発した言葉へのレスポンス処理
 		int languageNo = 0;
 		for(enumWords enumWord : enumWords.values()) {
@@ -36,18 +40,23 @@ public class PonchanResource {
 		boolean shiritoriTrue = word.contains("しりとり");
 
 		// しりとりを続けるかを判定するフラグ
-		boolean continueJudge = false;
-		if (shiritoriTrue || continueJudge) {
+//		boolean continueJudge = false;
+		if (shiritoriTrue || !"".equals(shiritoriResponseDto.getTalkId())) {
 			String srtrRes = shiritoriService.shiritori(word);
 			// 会話IDが入っている場合はしりとり続行
-			continueJudge = srtrRes.contains("talkId");
-			if (continueJudge) {
-				srtrRes.replace("talkId", "");
+			if (srtrRes.contains("talkId")) {
+				String[] resArray = srtrRes.split(",");
+				shiritoriResponseDto.setResText(resArray[0]);
+				shiritoriResponseDto.setTalkId(resArray[1].replace("talkId", ""));
 			}
-			return srtrRes;
+			return shiritoriResponseDto.getResText();
 		} else if (languageNo < enumWords.values().length) {
+			//会話の履歴を保存
+			textHolder.addText(word);
 			return communicationService.communication(languageNo);
 		} else {
+			//会話の履歴を保存
+			textHolder.addText(word);
 			return communicationService.communicationApi(word);
 		}
 	}
@@ -59,8 +68,8 @@ public class PonchanResource {
 	}
 
 	@RequestMapping("/tweet")
-	public void twitter(@RequestParam String word) {
+	public void twitter() {
 		//ツイートを行う処理
-		tweetService.tweet(word);
+		tweetService.tweet();
 		}
 }

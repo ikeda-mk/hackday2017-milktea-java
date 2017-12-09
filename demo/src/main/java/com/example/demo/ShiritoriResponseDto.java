@@ -8,12 +8,19 @@ public class ShiritoriResponseDto {
 	// 会話ID
 	private String talkId = "";
 
-	private ShiritoriResponseDto() {
-
+	public String getResText() {
+		return resText;
 	}
 
-	public void getInstance (String tesText, String talkId) {
-		this.resText = tesText;
+	public void setResText(String resText) {
+		this.resText = resText;
+	}
+
+	public String getTalkId() {
+		return talkId;
+	}
+
+	public void setTalkId(String talkId) {
 		this.talkId = talkId;
 	}
 
