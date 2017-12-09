@@ -38,6 +38,8 @@ public class ShiritoriService {
 			e.printStackTrace();
 		}
 
-		return resultData.getUtt();
+		StringBuilder res = new StringBuilder().append("{").append(resultData.getYomi()).append(",").append("talkId:").append(resultData.getContext());
+
+		return res.toString();
 	}
 }
