@@ -13,29 +13,39 @@ import org.springframework.web.bind.annotation.RestController;
 public class PonChanResource {
 
 	@Autowired
-	private SpeakService speakService;
+	private CommunicationService communicationService;
 	@Autowired
-	private ShiritoriService srtrService;
+	private ShiritoriService shiritoriService;
 	@Autowired
-	private TwitterService twitterService;
+	private MonologueService monologueService;
+	@Autowired
+	private TweetService tweetService;
 
-	@RequestMapping("/raspberryPi")
-	public String speak(@RequestParam String word) {
+	@RequestMapping("/communication")
+	public String communication(@RequestParam String word) {
+		//ユーザーが発した言葉へのレスポンス処理
 		List<String> responses = Arrays.asList("ただいま", "暇だな");
 		List<String> shiritoris = Arrays.asList("しりとり");
 		List<String> responseTrue = responses.stream().filter(response ->word.contains(response)).collect(Collectors.toList());
 		List<String> shiritoriTrue = shiritoris.stream().filter(shiritori ->word.contains(shiritori)).collect(Collectors.toList());
 
 		if (responseTrue.size() == 0) {
-			return speakService.speak(word);
+			return communicationService.communication(word);
 		} else if (shiritoriTrue.size() == 0) {
-			return srtrService.srtr(word);
+			return shiritoriService.shiritori(word);
 		}
 		return "hello World";
 	}
 
-	@RequestMapping("/twitter")
+	@RequestMapping("/talk")
+	public String talk() {
+		//独り言をつぶやく処理
+		return monologueService.monologue();
+	}
+
+	@RequestMapping("/tweet")
 	public void twitter(@RequestParam String word) {
-		twitterService.test(word);
+		//ツイートを行う処理
+		tweetService.test(word);
 		}
 }

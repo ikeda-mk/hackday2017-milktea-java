@@ -17,7 +17,7 @@ public class ShiritoriService {
 	public ResponseEntity<String> exchange() {
 		return rt.exchange(url, HttpMethod.POST, null, String.class);
 	}
-	public String srtr (String word) {
+	public String shiritori (String word) {
 		//ここにしりとり処理を書いていく
 
 		// APIKEY の設定
