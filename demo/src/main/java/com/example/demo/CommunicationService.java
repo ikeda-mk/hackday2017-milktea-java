@@ -27,6 +27,12 @@ public class CommunicationService {
 		DialogueRequestParam param = new DialogueRequestParam();
 		// ユーザの発話
 		param.setUtt(word);
+		param.setConstellations("牡羊座");
+		param.setBirthdateY(1995);
+		param.setBirthdateM(4);
+		param.setBirthdateD(3);
+		param.setPlace("那覇");
+		param.setAge(22);
 
 		// 雑談対話クラスの生成して、リクエストを実行する
 		Dialogue dialogue = new Dialogue();
